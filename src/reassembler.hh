@@ -1,5 +1,5 @@
 #pragma once
-
+#include <list>
 #include "byte_stream.hh"
 
 class Reassembler
@@ -42,4 +42,9 @@ public:
 
 private:
   ByteStream output_; // the Reassembler writes to this ByteStream
+
+  uint64_t first_un_pushed_idx_ { 0 };
+  uint64_t buffer_size_ { 0 };
+  bool has_last_ { false };
+  std::list<std::pair<uint64_t, std::string>> buffer_ {};
 };
